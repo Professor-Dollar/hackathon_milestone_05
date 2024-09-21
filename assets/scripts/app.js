@@ -267,15 +267,25 @@ window.addEventListener("DOMContentLoaded", () => {
             handleImageUpload(imageElem);
         });
         displayCV(userData);
-        const uniqueUrl = `${window.location.origin}?${params.toString()}`;
         shareBtn.addEventListener("click", () => {
-            const originalHTML = shareBtn.innerHTML;
-            shareBtn.innerHTML = `<i class="ri-checkbox-circle-line"></i>`;
-            setTimeout(() => {
-                shareBtn.innerHTML = originalHTML;
-            }, 1500);
-            navigator.clipboard.writeText(uniqueUrl);
-        });
+      console.log("Share button clicked"); // Debug log
+      console.log("URL to copy:", uniqueUrl); // Debug log
+
+       const originalHTML = shareBtn.innerHTML;
+      shareBtn.innerHTML = `<i class="ri-checkbox-circle-line"></i>`;
+  
+  navigator.clipboard.writeText(uniqueUrl)
+    .then(() => {
+      console.log("URL copied to clipboard"); // Debug log
+      setTimeout(() => {
+        shareBtn.innerHTML = originalHTML;
+      }, 1500);
+    })
+    .catch(err => {
+      console.error("Failed to copy: ", err); // Log the error
+      shareBtn.innerHTML = originalHTML; // Restore original HTML on error
+    });
+});
         window.history.replaceState(null, "", uniqueUrl);
     }
     else {
