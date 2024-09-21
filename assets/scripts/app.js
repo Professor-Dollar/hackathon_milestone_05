@@ -247,7 +247,6 @@ window.addEventListener("DOMContentLoaded", () => {
         displayCV(userData);
 
         shareBtn.addEventListener("click", () => {
-            const uniqueUrl = `${window.location.origin}?${params.toString()}`;
             navigator.clipboard.writeText(uniqueUrl)
                 .then(() => console.log("URL copied to clipboard"))
                 .catch(err => console.error("Failed to copy: ", err));
