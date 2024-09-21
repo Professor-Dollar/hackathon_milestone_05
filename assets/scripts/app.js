@@ -267,7 +267,6 @@ window.addEventListener("DOMContentLoaded", () => {
             handleImageUpload(imageElem);
         });
         displayCV(userData);
-        const uniqueUrl = `${window.location.origin}?${params.toString()}`;
         shareBtn.addEventListener("click", () => {
             const originalHTML = shareBtn.innerHTML;
             shareBtn.innerHTML = `<i class="ri-checkbox-circle-line"></i>`;
