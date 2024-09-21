@@ -173,19 +173,48 @@ const conditionalButtonsRendering = () => {
     backButton.style.display = isPreviewVisible ? "block" : "none";
 };
 
-const backToForm = () => {
+function backToForm() {
     backButton.addEventListener("click", () => {
+        // Show the form and hide the preview section
         mainForm.style.display = "block";
         previewSc.style.display = "none";
+        
+        // Get the parameters from the URL
         const params = new URLSearchParams(window.location.search);
-        if (params.toString().length > 0) {
-            requiredFields.forEach(field => {
-                field.value = params.get(field.name) || "";
-            });
-        }
+
+        // Prefill the form fields with the values from the URL parameters
+        firstnameElem.value = params.get("firstname") || "";
+        middlenameElem.value = params.get("middlename") || "";
+        lastnameElem.value = params.get("lastname") || "";
+        designationElem.value = params.get("designation") || "";
+        addressElem.value = params.get("address") || "";
+        emailElem.value = params.get("email") || "";
+        phonenoElem.value = params.get("phoneno") || "";
+        summaryElem.value = params.get("summary") || "";
+        achievement_title.value = params.get("achievement_title") || "";
+        achievement_description.value = params.get("achievement_description") || "";
+        exp_title.value = params.get("exp_title") || "";
+        exp_organization.value = params.get("exp_organization") || "";
+        exp_location.value = params.get("exp_location") || "";
+        exp_start_date.value = params.get("exp_start_date") || "";
+        exp_end_date.value = params.get("exp_end_date") || "";
+        exp_description.value = params.get("exp_description") || "";
+        edu_school.value = params.get("edu_school") || "";
+        edu_degree.value = params.get("edu_degree") || "";
+        edu_city.value = params.get("edu_city") || "";
+        edu_start_date.value = params.get("edu_start_date") || "";
+        edu_graduation_date.value = params.get("edu_graduation_date") || "";
+        edu_description.value = params.get("edu_description") || "";
+        proj_title.value = params.get("proj_title") || "";
+        proj_link.value = params.get("proj_link") || "";
+        proj_description.value = params.get("proj_description") || "";
+        skills.value = params.get("skills") || "";
+
+        // Show the appropriate buttons
         conditionalButtonsRendering();
     });
-};
+}
+
 
 function previewImage() {
     if (imageElem.files && imageElem.files[0]) {
