@@ -202,18 +202,19 @@ function printCV() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+    const storedImage = localStorage.getItem("resumePhoto");
+    if (storedImage) {
+        imageDsp.src = storedImage; // Set the image from local storage
+    }
+
+    imageElem.addEventListener("change", () => handleImageUpload(imageElem));
+
     const params = new URLSearchParams(window.location.search);
     if (params.toString().length > 0) {
         mainForm.style.display = "none";
         previewSc.style.display = "block";
 
         const userData = Object.fromEntries(params.entries());
-        const storedImage = localStorage.getItem("resumePhoto");
-        if (storedImage) {
-            imageDsp.src = storedImage;
-        }
-
-        imageElem.addEventListener("change", () => handleImageUpload(imageElem));
         displayCV(userData);
 
         shareBtn.addEventListener("click", () => {
